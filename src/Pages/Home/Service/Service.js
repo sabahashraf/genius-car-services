@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Service.css";
 const Service = ({ service }) => {
-  const { name, img, description, price } = service;
+  const { name, img, description, price, id } = service;
+  const navigate = useNavigate();
+  const navigateToServiceDetail = (id) => {
+    navigate(`/service/${id}`);
+  };
   return (
     <div className="service">
       <img src={img} className="w-100" alt=""></img>
@@ -10,7 +15,12 @@ const Service = ({ service }) => {
       <p>
         <small>{description}</small>
       </p>
-      <button className="btn btn-primary">Book this service</button>
+      <button
+        onClick={() => navigateToServiceDetail(id)}
+        className="btn btn-primary"
+      >
+        Book this service
+      </button>
     </div>
   );
 };
